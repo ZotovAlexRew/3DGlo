@@ -1,0 +1,24 @@
+{
+  "name": "new_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "watch": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZotovAlexRew/JS_new_project.git"
+  },
+  "author": "Zotov Aleksandr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZotovAlexRew/JS_new_project/issues"
+  },
+  "homepage": "https://github.com/ZotovAlexRew/JS_new_project#readme",
+  "devDependencies": {
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
