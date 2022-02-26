@@ -29,7 +29,7 @@ const menu = () => {
   menuBtn.addEventListener('click', handleMenu);
   closeBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    scroll(arrDown);
+    handleMenu();
   });
   menuItems.forEach(menuItem => menuItem.addEventListener('click',handleMenu));
   arrDown.addEventListener('click', function(e) {

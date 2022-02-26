@@ -7,7 +7,7 @@ const validation = () => {
 
   function noMoreSpace(expr) {
     let reg = /\s+/g;
-    expr.value = expr.value.replace(reg, '');
+    expr.value = expr.value.replace(reg, ' ');
     if (reg.test(expr.value[0]) || reg.test(expr.value[expr.value.length - 1])) {
       expr.value = expr.value.trim();
     }
@@ -15,9 +15,9 @@ const validation = () => {
 
   function noMoreHyphen(expr) {
     let reg = /\-+/g;
-    expr.value = expr.value.replace(reg, '');
+    expr.value = expr.value.replace(reg, '-');
     if (reg.test(expr.value[0]) || reg.test(expr.value[expr.value.length - 1])) {
-      expr.value = expr.value.trim();
+      expr.value = expr.value.replace(reg, '');
     }
   }
 
