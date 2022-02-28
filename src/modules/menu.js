@@ -1,9 +1,6 @@
 const menu = () => {
-  const menuBtn = document.querySelector('.menu');
+  const main = document.querySelector('main');
   const menu = document.querySelector('menu');
-  const closeBtn = menu.querySelector('.close-btn');
-  const menuItems = menu.querySelectorAll('ul>li>a');
-  const menuLinks = menu.querySelectorAll('a[href^="#"]');
   const arrDown = document.querySelector('main>a');
 
   const handleMenu = () => {
@@ -12,29 +9,34 @@ const menu = () => {
 
   const scroll = (element) => {
     const id = element.getAttribute('href');
-
     document.querySelector(id).scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     });
   };
 
-  for (let i = 0; i < menuLinks.length; i++) {
-    menuLinks[i].addEventListener('click', function(e) {
+  main.addEventListener('click', (e) => {
+    if (e.target.closest('.menu')) {
+      handleMenu();
+    }
+    else if (e.target.slosest('a')) {
       e.preventDefault();
-      scroll(menuLinks[i]);
-    });
-  }
-
-  menuBtn.addEventListener('click', handleMenu);
-  closeBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    handleMenu();
+      scroll(arrDown);
+    }
   });
-  menuItems.forEach(menuItem => menuItem.addEventListener('click',handleMenu));
-  arrDown.addEventListener('click', function(e) {
-    e.preventDefault();
-    scroll(arrDown);
+
+  menu.addEventListener('click', (e) => {
+    if(e.target.matches('ul>li>a')) {
+      let link = e.target.closest('a');
+      e.preventDefault();
+      scroll(link);
+      handleMenu();
+    }
+    else if (e.target.closest('.close-btn')) 
+    {
+      e.preventDefault();
+      handleMenu();
+    }
   });
 };
 
