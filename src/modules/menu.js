@@ -1,10 +1,9 @@
 const menu = () => {
-  const menuBtn = document.querySelector('.menu');
+  const body = document.querySelector('body');
   const menu = document.querySelector('menu');
-  const closeBtn = menu.querySelector('.close-btn');
-  const menuItems = menu.querySelectorAll('ul>li>a');
-  const menuLinks = menu.querySelectorAll('a[href^="#"]');
+  const main = document.querySelector('main');
   const arrDown = document.querySelector('main>a');
+  const arrDownImg = document.querySelector('main>a>img');
 
   const handleMenu = () => {
     menu.classList.toggle('active-menu');
@@ -19,22 +18,32 @@ const menu = () => {
     });
   };
 
-  for (let i = 0; i < menuLinks.length; i++) {
-    menuLinks[i].addEventListener('click', function(e) {
-      e.preventDefault();
-      scroll(menuLinks[i]);
-    });
-  }
-
-  menuBtn.addEventListener('click', handleMenu);
-  closeBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    handleMenu();
-  });
-  menuItems.forEach(menuItem => menuItem.addEventListener('click',handleMenu));
-  arrDown.addEventListener('click', function(e) {
-    e.preventDefault();
-    scroll(arrDown);
+  body.addEventListener('click', (e) => {
+      if (e.target.closest('.menu')) 
+      {
+        handleMenu();
+      }
+      else if (e.target === arrDownImg)
+      {
+        e.preventDefault();
+        scroll(arrDown);
+      }
+      else if (e.target.matches('menu>ul>li>a')) 
+      {
+        let link = e.target.closest('a');
+        e.preventDefault();
+        scroll(link);
+        handleMenu();
+      }
+      else if (e.target.closest('.close-btn'))
+      {
+        e.preventDefault();
+        handleMenu();
+      }
+      else if (!e.target.closest('menu') && menu.classList.contains('active-menu'))
+      {
+        menu.classList.remove('active-menu');
+      }
   });
 };
 
