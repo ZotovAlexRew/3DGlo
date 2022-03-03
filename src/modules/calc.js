@@ -1,3 +1,5 @@
+import { animation } from "./helpers";
+
 const calc = (price = 100) => {
     const calcBlock = document.querySelector('.calc-block');
     const calcType = document.querySelector('.calc-type');
@@ -39,37 +41,34 @@ const calc = (price = 100) => {
         
         
         const animationNumbers = (result) => {
-            if (result === 0) 
+            let timer;
+            if(timer) 
             {
-                return;
-            }
-
-            let start = +total.textContent;
-            let increment;
-            if (result > start)
+                clearInterval(timer);
+                animationNumbers(result);
+            } 
+            else 
             {
-                increment = 1;
-            }
-            else if (result < start)
-            {
-                increment = -1;
-            }
-            else if (result === start)
-            {
-                return;
-            }
-
-            let current = start;
-            let timer = setInterval(function() {
+                if (result === 0) return;
+                let start = +total.textContent;
+                let increment;
+                if (result > start) {
+                    increment = 1 ;
+                } else if (result < start) {
+                    increment = -1;
+                } else if (result === start) {
+                    return;
+                }
+        
+                let current = start;
+                timer  = setInterval(function() {
                 current += increment;
                 total.textContent = current;
-                
-               if (current === result)
-                {
-                    clearInterval(timer);
-                    
-                }
-            }, 0.000001);
+                    if (current === result) {
+                        clearInterval(timer);
+                    }
+                }, 0.0001);
+            }    
         };
 
         animationNumbers(totalValue);
