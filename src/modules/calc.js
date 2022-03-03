@@ -63,19 +63,13 @@ const calc = (price = 100) => {
             let timer = setInterval(function() {
                 current += increment;
                 total.textContent = current;
-                calcType.disabled = true;
-                calcSquare.disabled = true;
-                calcCount.disabled = true;
-                calcDay.disabled = true;
-                if (current === result)
+                
+               if (current === result)
                 {
                     clearInterval(timer);
-                    calcType.disabled = false;
-                    calcSquare.disabled = false;
-                    calcCount.disabled = false;
-                    calcDay.disabled = false;
+                    
                 }
-            }, 0.0001);
+            }, 0.000001);
         };
 
         animationNumbers(totalValue);
