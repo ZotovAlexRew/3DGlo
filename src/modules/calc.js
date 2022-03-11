@@ -48,7 +48,7 @@ const calc = (price = 100) => {
                      return timeFraction;
                   },
                   draw(progress) {
-                    total.textContent = start + Math.round(diff * progress)
+                    total.textContent = start + Math.round(diff * progress);
                   }
                });
     };
